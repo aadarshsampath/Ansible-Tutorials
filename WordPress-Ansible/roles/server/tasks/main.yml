@@ -1,2 +1,18 @@
 ---
 # tasks file for server
+- name: Update apt Cache in the server 
+  apt: update_cache=yes cache_valid_time=4000
+  sudo: yes
+
+
+- name: Install the required Software packages
+  apt: name={{item}} state=latest
+  sudo: yes
+  with_items:
+    - apache2
+    - mysql-server
+    - php5-mysql
+    - php5
+    - libapache2-mod-php5
+    - php5-mcrypt
+    - python-mysqldb
